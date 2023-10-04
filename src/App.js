@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ToDoList from './components/todo/ToDoList';
 import ToDoForm from './components/todo/ToDoForm';
+import ToDoCalendar from './components/todo/ToDoCalendar';
+import Button from './components/common/Button';
 
 function App() {
   const [toDos, setToDos] = useState([]);
+  const [view, setView] = useState('list');
 
   useEffect(() => {
     const storedToDos = localStorage.getItem('toDos');
@@ -33,10 +36,18 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>
       <h1>Lista de Tarefas</h1>
       <ToDoForm onAdd={addToDo} />
-      <ToDoList toDos={toDos} onDelete={deleteToDo} onUpdate={updateToDo} />
+      <div>
+        <Button onClick={() => setView('list')} label="Visualizar Lista" />
+        <Button onClick={() => setView('calendar')} label="Visualizar Calendário" />
+      </div>
+      {view === 'list' ? (
+        <ToDoList toDos={toDos} onDelete={deleteToDo} onUpdate={updateToDo} />
+      ) : (
+        <ToDoCalendar toDos={toDos} />
+      )}
     </div>
   );
 }

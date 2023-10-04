@@ -15,6 +15,10 @@ const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
     setIsEditing(true);
   };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
+
   const handleSave = () => {
     onUpdate(editedToDo);
     setIsEditing(false);
@@ -44,6 +48,7 @@ const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
             onChange={(e) => setEditedToDo({ ...editedToDo, date: e.target.value })}
           />
 
+          <Button onClick={handleCancel} label="Cancelar" />
           <Button onClick={handleSave} label="Salvar" />
         </>
       ) : (
