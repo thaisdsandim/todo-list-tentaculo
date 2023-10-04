@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import ToDoList from './components/ToDoList';
+import ToDoForm from './components/ToDoForm';
 
 function App() {
+  const [toDos, setToDos] = useState([]);
+
+  useEffect(() => {
+    const storedToDos = localStorage.getItem('toDos');
+    if (storedToDos) {
+      setToDos(JSON.parse(storedToDos));
+    }
+  }, []);
+
+  const addToDo = (newToDo) => {
+    const updatedToDos = [...toDos, { ...newToDo, id: Date.now() }];
+    setToDos(updatedToDos);
+    localStorage.setItem('toDos', JSON.stringify(updatedToDos));
+  };
+
+  const updateToDo = (updatedToDo) => {
+    const updatedToDos = toDos.map((toDo) =>
+      toDo.id === updatedToDo.id ? updatedToDo : toDo
+    );
+    setToDos(updatedToDos);
+    localStorage.setItem('toDos', JSON.stringify(updatedToDos));
+  };
+
+  const deleteToDo = (toDoId) => {
+    const updatedToDos = toDos.filter((toDo) => toDo.id !== toDoId);
+    setToDos(updatedToDos);
+    localStorage.setItem('toDos', JSON.stringify(updatedToDos));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Lista de Tarefas</h1>
+      <ToDoForm onAdd={addToDo} />
+      <ToDoList toDos={toDos} onDelete={deleteToDo} onUpdate={updateToDo} />
     </div>
   );
 }
