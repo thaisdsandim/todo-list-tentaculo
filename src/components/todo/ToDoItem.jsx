@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import DateInput from '../common/DateInput';
 
 const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,30 +24,35 @@ const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
     <li>
       {isEditing ? (
         <>
-          <input
-            type="text"
+          <Input
+            name="title"
+            placeholder="Título"
             value={editedToDo.title}
             onChange={(e) => setEditedToDo({ ...editedToDo, title: e.target.value })}
           />
-          <input
-            type="text"
+
+          <Input
+            name="description"
+            placeholder="Descrição"
             value={editedToDo.description}
             onChange={(e) => setEditedToDo({ ...editedToDo, description: e.target.value })}
           />
-          <input
-            type="date"
+
+          <DateInput
+            name="date"
             value={editedToDo.date}
             onChange={(e) => setEditedToDo({ ...editedToDo, date: e.target.value })}
           />
-          <button onClick={handleSave}>Salvar</button>
+
+          <Button onClick={handleSave} label="Salvar" />
         </>
       ) : (
         <>
           <span>{toDo.title}</span>
           <span>{toDo.description}</span>
           <span>{toDo.date}</span>
-          <button onClick={handleEdit}>Editar</button>
-          <button onClick={handleDelete}>Excluir</button>
+          <Button onClick={handleEdit} label="Editar" />
+          <Button onClick={handleDelete} label="Excluir" />
         </>
       )}
     </li>

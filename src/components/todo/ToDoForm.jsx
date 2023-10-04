@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Input from '../common/Input';
+import DateInput from '../common/DateInput';
+import Button from '../common/Button';
 
 const ToDoForm = ({ onAdd }) => {
   const [newToDo, setNewToDo] = useState({
@@ -20,29 +23,29 @@ const ToDoForm = ({ onAdd }) => {
   return (
     <div>
       <label htmlFor="title">Título:</label>
-      <input
-        type="text"
+      <Input
         name="title"
         placeholder="Título"
         value={newToDo.title}
         onChange={handleChange}
       />
+
       <label htmlFor="description">Descrição:</label>
-      <input
-        type="text"
+      <Input
         name="description"
         placeholder="Descrição"
         value={newToDo.description}
         onChange={handleChange}
       />
+
       <label htmlFor="date">Data de Conclusão:</label>
-      <input
-        type="date"
+      <DateInput
         name="date"
         value={newToDo.date}
         onChange={handleChange}
       />
-      <button onClick={handleAdd}>Adicionar Tarefa</button>
+
+      <Button onClick={handleAdd} label="Adicionar Tarefa" />
     </div>
   );
 };
