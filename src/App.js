@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const addToDo = (newToDo) => {
-    const updatedToDos = [...toDos, { ...newToDo, id: Date.now() }];
+    const updatedToDos = [...toDos, { ...newToDo, id: Date.now(), status: "a fazer" }];
     setToDos(updatedToDos);
     localStorage.setItem('toDos', JSON.stringify(updatedToDos));
   };
@@ -46,7 +46,7 @@ function App() {
       {view === 'list' ? (
         <ToDoList toDos={toDos} onDelete={deleteToDo} onUpdate={updateToDo} />
       ) : (
-        <ToDoCalendar toDos={toDos} />
+        <ToDoCalendar toDos={toDos} onDelete={deleteToDo} onUpdate={updateToDo}  />
       )}
     </div>
   );

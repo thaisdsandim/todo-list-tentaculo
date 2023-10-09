@@ -4,23 +4,10 @@ import Input from '../common/Input';
 import DateInput from '../common/DateInput';
 import ConfirmationModal from './ConfirmationModal';
 
-const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
-  const [isEditing, setIsEditing] = useState(false);
+const ToDoModal = ({ toDo, onClose, onUpdate, onDelete }) => {
   const [editedToDo, setEditedToDo] = useState(toDo);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleDelete = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleConfirmDelete = () => {
-    onDelete(toDo.id);
-    setIsModalOpen(false);
-  };
-
-  const handleCancelDelete = () => {
-    setIsModalOpen(false);
-  };
+  const [isEditing, setIsEditing] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -35,8 +22,21 @@ const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
     setIsEditing(false);
   };
 
+  const handleDelete = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleConfirmDelete = () => {
+    onDelete();
+    onClose();
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+  };
+
   return (
-    <li>
+    <div>
       {isEditing ? (
         <>
           <Input
@@ -64,23 +64,26 @@ const ToDoItem = ({ toDo, onDelete, onUpdate }) => {
         </>
       ) : (
         <>
-          <span>{toDo.title}</span>
-          <span>{toDo.description}</span>
-          <span>{toDo.date}</span>
+          <h2>{toDo.title}</h2>
+          <p>{toDo.description}</p>
+          <p>{toDo.date}</p>
+          <p>{toDo.status}</p>
+          
           <Button onClick={handleEdit} label="Editar" />
           <Button onClick={handleDelete} label="Excluir" />
+          <Button onClick={onClose} label="Fechar" />
         </>
       )}
 
       <ConfirmationModal
-        isOpen={isModalOpen}
+        isOpen={showDeleteConfirmation}
         title="Confirmação de Exclusão"
         message={`Tem certeza que deseja excluir a tarefa "${toDo.title}"?`}
-        onCancel={handleCancelDelete}
         onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
       />
-    </li>
+    </div>
   );
 };
 
-export default ToDoItem;
+export default ToDoModal;
