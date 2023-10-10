@@ -236,3 +236,171 @@ import Input from "./common/Input";
 
 <Input name="nome" placeholder="Digite seu nome" value={nome} onChange={handleNomeChange} />
 ```
+
+# Testes
+
+## Testes de Adição de Tarefa
+
+### AddTaskspec.cy.js
+
+#### Adicionar Tarefa com Título
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título e confirmar a inclusão bem-sucedida.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Verifica se o título da tarefa adicionada é visível na tela.
+
+#### Adicionar Tarefa sem Título
+Este teste verifica se é possível visitar a página, adicionar uma tarefa sem título e verificar a exibição de uma mensagem de erro.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Clica em "Adicionar" sem inserir um título.
+- Verifica se a mensagem de erro "Título da tarefa não pode ficar em branco!" é exibida.
+
+## Testes de Edição de Tarefa
+
+### EditTaskCalendarspec.cy.js
+
+#### Editar Tarefa no Calendário
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título, abrir o popup da tarefa, editar a tarefa e confirmar a edição bem-sucedida.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Insere uma data na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Clica em "Visualizar Calendário".
+- Clica no título da tarefa adicionada no calendário.
+- Clica em "Editar".
+- Insere uma descrição na tarefa.
+- Clica em "Salvar".
+- Verifica se a mensagem "Tarefa editada com sucesso!" é exibida.
+- Fecha o popup.
+- Clica novamente em "Visualizar Calendário".
+- Clica no título da tarefa.
+- Verifica se a descrição da tarefa editada é visível.
+
+### EditTaskspec.cy.js
+
+#### Editar Tarefa com Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa e editá-la com sucesso.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Clica em "Adicionar".
+- Verifica se o título da tarefa é visível.
+- Clica no ícone de edição.
+- Insere uma descrição na tarefa.
+- Clica em "Salvar".
+- Verifica se a descrição da tarefa editada é visível.
+- Verifica se a mensagem "Tarefa editada com sucesso!" é exibida.
+
+## Testes de Exclusão de Tarefa
+
+### ExcludeTaskCalendarspec.cy.js
+
+#### Excluir Tarefa no Calendário com Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título, abrir o popup da tarefa, confirmar a exclusão e verificar que a tarefa foi removida do calendário.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Insere uma data na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Clica em "Visualizar Calendário".
+- Clica no título da tarefa adicionada no calendário.
+- Clica em "Excluir".
+- Clica em "Sim" para confirmar a exclusão.
+- Verifica se o título da tarefa não existe mais no calendário.
+
+#### Excluir Tarefa no Calendário sem Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título, abrir o popup da tarefa, cancelar a exclusão e verificar que a tarefa ainda está presente no calendário.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Insere uma data na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Clica em "Visualizar Calendário".
+- Clica no título da tarefa adicionada no calendário.
+- Clica em "Excluir".
+- Clica em "Não" para cancelar a exclusão.
+- Verifica se o título da tarefa ainda está visível no calendário.
+
+### ExcludeTaskspec.cy.js
+
+#### Excluir Tarefa com Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa e excluí-la com sucesso.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Clica em "Adicionar".
+- Verifica se o título da tarefa é visível.
+- Clica no ícone de exclusão.
+- Clica em "Sim" para confirmar a exclusão.
+- Verifica se o título da tarefa não existe mais na lista de tarefas.
+
+#### Excluir Tarefa sem Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa e cancelar a exclusão, garantindo que a tarefa não seja removida.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Clica em "Adicionar".
+- Verifica se o título da tarefa é visível.
+- Clica no ícone de exclusão.
+- Clica em "Não" para cancelar a exclusão.
+- Verifica se o título da tarefa ainda está visível na lista de tarefas.
+
+## Teste de Movimentação de Tarefa
+
+### MoveTaskspec.cy.js
+
+#### Mover Tarefa com Sucesso
+Este teste verifica se é possível visitar a página, adicionar uma tarefa e movê-la para outro status com sucesso.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Clica em "Adicionar".
+- Verifica se o título da tarefa é visível.
+- Clica no ícone de movimentação.
+- Verifica se a tarefa foi movida para o novo status.
+
+## Teste de Visualização de Tarefa no Calendário
+
+### ViewCalendarspec.cy.js
+
+#### Ver Tarefa no Calendário
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título e verificar sua presença no calendário.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Insere uma data na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Clica em "Visualizar Calendário".
+- Verifica se o título da tarefa é visível no calendário.
+
+#### Ver Popup da Tarefa no Calendário
+Este teste verifica se é possível visitar a página, adicionar uma tarefa com um título, abrir o popup da tarefa no calendário e verificar sua data de início.
+
+- Visita a página inicial.
+- Clica em "Nova Tarefa".
+- Insere um título na tarefa.
+- Insere uma data na tarefa.
+- Clica em "Adicionar".
+- Verifica se a mensagem "Tarefa adicionada com sucesso!" é exibida.
+- Clica em "Visualizar Calendário".
+- Clica no título da tarefa no calendário.
+- Verifica se a data de início da tarefa é visível no popup.
