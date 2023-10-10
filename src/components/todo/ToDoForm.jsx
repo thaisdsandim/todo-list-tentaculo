@@ -31,7 +31,7 @@ const ToDoForm = ({ onAdd }) => {
 			setNewToDo({ title: "", description: "", date: "" });
 			closeAndResetModal();
 			setShowAlert(true);
-			setAlertMessage("Tarefa editada com sucesso!");
+			setAlertMessage("Tarefa adicionada com sucesso!");
 			setTimeout(() => {
 				setShowAlert(false);
 			}, 1000);
