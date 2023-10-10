@@ -140,7 +140,7 @@ import ToDoItem from "./todo/ToDoItem";
 <ToDoItem toDo={task} onDelete={handleDeleteTask} onUpdate={handleUpdateTask} />
 ```
 
-### ToDoList
+## ToDoList
 O componente `ToDoList` exibe a lista de tarefas em três categorias: "A Fazer", "Fazendo" e "Feitas". Ele agrupa as tarefas de acordo com seu status e permite que os usuários interajam com elas.
 
 - `toDos` (array): Uma matriz de tarefas a serem exibidas.
