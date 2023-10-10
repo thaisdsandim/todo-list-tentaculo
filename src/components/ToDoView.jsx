@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ToDoList from "./components/todo/ToDoList";
-import ToDoForm from "./components/todo/ToDoForm";
-import ToDoCalendar from "./components/todo/ToDoCalendar";
-import Button from "./components/common/Button";
+import ToDoList from "./todo/ToDoList";
+import ToDoForm from "./todo/ToDoForm";
+import ToDoCalendar from "./todo/ToDoCalendar";
+import Button from "./common/Button";
 
 function ToDoView() {
 	const [toDos, setToDos] = useState([]);
