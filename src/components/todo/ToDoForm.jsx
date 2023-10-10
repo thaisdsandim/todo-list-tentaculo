@@ -54,10 +54,10 @@ const ToDoForm = ({ onAdd }) => {
 	return (
 		<div>
 			{showAlert && <Alert message={alertMessage} onClose={() => setShowAlert(false)} />}
-			<Button onClick={openModal} label="Adicionar Tarefa" />
+			<Button onClick={openModal} label="Nova Tarefa" />
 			{isModalOpen && (
 				<div className="min-width-70-vh position-fixed top-50p left-50p background-white padding-20 box-shadow z-index-1000 transform-translate-50-50 border-radius-5 background-white">
-					<h2>Adicionar Tarefa</h2>
+					<h2>Nova Tarefa</h2>
 					<div className="margin-bottom-20">
 						<label htmlFor="title">Título:</label>
 						<Input
@@ -78,7 +78,7 @@ const ToDoForm = ({ onAdd }) => {
 						<label htmlFor="date">Data de Conclusão:</label>
 						<DateInput name="date" value={newToDo.date} onChange={handleChange} />
 					</div>
-					<Button onClick={handleAdd} label="Adicionar Tarefa" />
+					<Button onClick={handleAdd} label="Adicionar" />
 					<Button onClick={closeModal} label="Fechar" />
 				</div>
 			)}
